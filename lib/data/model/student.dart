@@ -15,4 +15,13 @@ class Student {
       required this.score,
       required this.createdAt,
       required this.updatedAt});
+
+  factory Student.fromJson(Map<String, dynamic> json) => Student(
+      id: json['id'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
+      course: json['course'],
+      score: json['score'],
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at']);
 }
