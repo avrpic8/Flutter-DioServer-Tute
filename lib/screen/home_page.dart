@@ -4,11 +4,15 @@ import 'package:flutter_server_dio/data/provider/student_provider.dart';
 import 'package:flutter_server_dio/screen/add_student_page.dart';
 import 'package:flutter_server_dio/widget/student_card.dart';
 
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
-class HomePage extends StatelessWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final studentsProvider = StudentProvider();
-
-  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +22,15 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.of(context).push(
+        onPressed: () async {
+          await Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const AddStudentPage(),
+              builder: (context) => AddStudentPage(
+                studentProvider: studentsProvider,
+              ),
             ),
           );
+          setState(() {});
         },
         label: Row(
           children: const [
@@ -37,6 +44,7 @@ class HomePage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data != null) {
             return ListView.builder(
+              padding: const EdgeInsets.only(bottom: 80),
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return StudentCard(student: snapshot.data![index]);
