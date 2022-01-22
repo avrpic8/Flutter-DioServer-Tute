@@ -25,4 +25,7 @@ class Student {
       score: json['score'],
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt']);
+
+  static List<Student> listFromJson(list) =>
+      List<Student>.from(list.map((x) => Student.fromJson(x)));
 }

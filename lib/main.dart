@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'app/module/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder())
-      ),
-      //home: const HomePage(),
+          primarySwatch: Colors.blue,
+          inputDecorationTheme:
+              const InputDecorationTheme(border: OutlineInputBorder())),
+      home: HomePage(),
     );
   }
 }
