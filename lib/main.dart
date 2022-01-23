@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_server_dio/app/module/home/home_binding.dart';
+import 'package:flutter_server_dio/app/module/home/home_page.dart';
+import 'package:flutter_server_dio/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'app/module/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           inputDecorationTheme:
               const InputDecorationTheme(border: OutlineInputBorder())),
-      home: HomePage(),
+      initialBinding: HomeBinding(),
+      getPages: AppPages.routes,
+      home: const HomePage(),
     );
   }
 }

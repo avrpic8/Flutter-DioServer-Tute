@@ -19,12 +19,12 @@ class Student {
 
   factory Student.fromJson(Map<String, dynamic> json) => Student(
       id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
       course: json['course'],
       score: json['score'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt']);
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at']);
 
   static List<Student> listFromJson(list) =>
       List<Student>.from(list.map((x) => Student.fromJson(x)));

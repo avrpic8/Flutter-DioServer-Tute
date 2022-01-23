@@ -1,15 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_server_dio/app/data/provider/student_provider.dart';
 import 'package:flutter_server_dio/app/module/home/home_controller.dart';
-import 'package:get/instance_manager.dart';
+import 'package:flutter_server_dio/app/module/home/widget/student_card.dart';
+import 'package:flutter_server_dio/app/routes/app_pages.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  final homeCtr = Get.put(HomeController(studentProvider: StudentProvider()));
+class HomePage extends GetView<HomeController> {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    controller.getAllStudents;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Android Expert'),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Get.toNamed(Routes.REGISTER);
+        },
+        label: Row(
+          children: const [
+            Icon(Icons.add),
+            Text('Add Students'),
+          ],
+        ),
+      ),
+      body: controller.obx(
+        (state) => ListView.builder(
+          padding: const EdgeInsets.only(bottom: 80),
+          itemCount: state!.length,
+          itemBuilder: (context, index) {
+            return StudentCard(student: state[index]);
+          },
+        ),
+      ),
+    );
   }
 }
