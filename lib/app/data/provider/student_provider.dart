@@ -10,14 +10,17 @@ class StudentProvider extends GetConnect {
     super.onInit();
   }
 
-  Future<Response> getAllStudents() => get('experts/student');
+  Future<Response<List<Student>>> getAllStudents() => get('experts/student');
 
-  Future<Response> addStudent(
+  Future<Response<Student>> addStudent(
           String firstName, String lastName, String course, int score) =>
-      post('experts/student', {
-        'first_name': firstName,
-        'last_name': lastName,
-        'corse': course,
-        'score': score
-      }, decoder: (data)=>Student.fromJson(data));
+      post<Student>(
+          'experts/student',
+          {
+            'first_name': firstName,
+            'last_name': lastName,
+            'corse': course,
+            'score': score
+          },
+          decoder: (data) => Student.fromJson(data));
 }

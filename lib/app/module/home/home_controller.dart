@@ -3,7 +3,9 @@ import 'package:flutter_server_dio/app/data/provider/student_provider.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController with StateMixin<List<Student>> {
-  final studentProvider = Get.find<StudentProvider>();
+  final StudentProvider provider;
+
+  HomeController({required this.provider});
 
   @override
   void onInit() {
@@ -13,7 +15,7 @@ class HomeController extends GetxController with StateMixin<List<Student>> {
   }
 
   void getAllStudents() {
-    studentProvider.getAllStudents().then((result) {
+    provider.getAllStudents().then((result) {
       List<Student>? data = result.body;
       change(data, status: RxStatus.success());
     }, onError: (err) {

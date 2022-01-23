@@ -11,12 +11,12 @@ class RegisterController extends GetxController {
   final courseController = TextEditingController();
   final scoreController = TextEditingController();
 
-  Future<Student> addStudent(
-      String firstName, String lastName, String course, int score) async {
-    Student result = (await studentProvider.addStudent(
-        firstName, lastName, course, score)) as Student;
-    print(result);
-    return result;
+  void addStudent(String firstName, String lastName, String course, int score) {
+    studentProvider
+        .addStudent(firstName, lastName, course, score)
+        .then((value) {
+      print(value.body);
+    });
   }
 
   @override

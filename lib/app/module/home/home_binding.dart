@@ -6,6 +6,6 @@ class HomeBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => StudentProvider());
-    Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => HomeController(provider: Get.find()));
   }
 }

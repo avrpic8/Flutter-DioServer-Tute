@@ -13,18 +13,14 @@ class RegisterStudentPage extends GetView<RegisterController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          try {
-            final result = await controller.addStudent(
-                controller.firstNameController.text,
-                controller.lastNameController.text,
-                controller.courseController.text,
-                14);
-            print(result);
-            //Navigator.pop(context, result);
-          } catch (e) {
-            //debugPrint(e.toString());
-          }
+        onPressed: () {
+          controller.addStudent(
+              controller.firstNameController.text,
+              controller.lastNameController.text,
+              controller.courseController.text,
+              int.parse(controller.scoreController.text));
+          //print(result);
+          //Navigator.pop(context, result);
         },
         label: Row(
           children: const [
