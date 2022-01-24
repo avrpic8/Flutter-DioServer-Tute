@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_server_dio/app/module/register/register_controller.dart';
-import 'package:get/state_manager.dart';
+import 'package:flutter_server_dio/app/routes/app_pages.dart';
+import 'package:get/get.dart';
 
 class RegisterStudentPage extends GetView<RegisterController> {
   const RegisterStudentPage({Key? key}) : super(key: key);
@@ -13,14 +14,13 @@ class RegisterStudentPage extends GetView<RegisterController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          controller.addStudent(
+        onPressed: () async {
+          final student = await controller.addStudent(
               controller.firstNameController.text,
               controller.lastNameController.text,
               controller.courseController.text,
               int.parse(controller.scoreController.text));
-          //print(result);
-          //Navigator.pop(context, result);
+          Get.back(result: student);
         },
         label: Row(
           children: const [

@@ -4,6 +4,6 @@ import 'package:get/instance_manager.dart';
 class RegisterBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => RegisterController());
+    Get.lazyPut(() => RegisterController(provider: Get.find()));
   }
 }

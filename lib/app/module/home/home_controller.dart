@@ -11,7 +11,6 @@ class HomeController extends GetxController with StateMixin<List<Student>> {
   void onInit() {
     getAllStudents();
     super.onInit();
-    print('run');
   }
 
   void getAllStudents() {

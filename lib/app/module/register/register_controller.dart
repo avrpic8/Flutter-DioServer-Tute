@@ -4,19 +4,20 @@ import 'package:flutter_server_dio/app/data/provider/student_provider.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
-  final studentProvider = Get.find<StudentProvider>();
+  final StudentProvider provider;
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final courseController = TextEditingController();
   final scoreController = TextEditingController();
 
-  void addStudent(String firstName, String lastName, String course, int score) {
-    studentProvider
-        .addStudent(firstName, lastName, course, score)
-        .then((value) {
-      print(value.body);
-    });
+  RegisterController({required this.provider});
+
+  Future<Student?> addStudent(
+      String firstName, String lastName, String course, int score) async {
+    final result =
+        await provider.addStudent(firstName, lastName, course, score);
+    return result.body;
   }
 
   @override

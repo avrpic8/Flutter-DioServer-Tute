@@ -16,8 +16,9 @@ class HomePage extends GetView<HomeController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Get.toNamed(Routes.REGISTER);
+        onPressed: () async {
+          await Get.toNamed(Routes.REGISTER);
+          controller.getAllStudents();
         },
         label: Row(
           children: const [
@@ -29,9 +30,9 @@ class HomePage extends GetView<HomeController> {
       body: controller.obx(
         (state) => ListView.builder(
           padding: const EdgeInsets.only(bottom: 80),
-          itemCount: state!.length,
+          itemCount: state?.length,
           itemBuilder: (context, index) {
-            return StudentCard(student: state[index]);
+            return StudentCard(student: state![index]);
           },
         ),
       ),
